@@ -1,4 +1,4 @@
-# 🔬 Multi-Beam Interferometer Analyzer (OPD) ENG
+# 🔬 Multi-Beam Interferometer Analyzer (OPD)
 
 > A high-performance GUI desktop application for visualization, digital filtering, and spectral-phase analysis of interferometric data, calculation of Optical Path Difference (OPD), and inter-channel phase distribution.
 
@@ -70,76 +70,82 @@ git clone https://github.com/Amizx2/Programme-for-the-intorferometer-OPD.git
 cd Programme-for-the-intorferometer-OPD
 ```
 
-# 🔬 Multi-Beam Interferometer Analyzer (OPD) Ru
-
-> Программа с графическим интерфейсом для визуализации, фильтрации и спектрально-фазового анализа данных многолучевого интерферометра, расчета разности оптического хода (OPD) и поканального распределения фазовых сдвигов.
-
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![PyQt5](https://img.shields.io/badge/GUI-PyQt5-green.svg?logo=qt&logoColor=white)](https://riverbankcomputing.com/software/pyqt/)
-[![PyQtGraph](https://img.shields.io/badge/Plots-PyQtGraph-orange.svg)](https://www.pyqtgraph.org/)
-[![SciPy](https://img.shields.io/badge/DSP-SciPy%20%26%20NumPy-blueviolet.svg)](https://scipy.org/)
-[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg?logo=windows&logoColor=white)](https://github.com/Amizx2/Programme-for-the-intorferometer-OPD/releases)
-
----
-
-## 📋 О проекте
-
-**Multi-Beam Interferometer Analyzer** — специализированный аналитический комплекс для автоматизации обработки сигналов с оптических интерферометров. Программа разработана для исследователей, инженеров и студентов, работающих в области волоконной оптики, лазерной физики, интерферометрических сенсоров и спектроскопии.
-
-Приложение позволяет загружать интерферограммы, пересчитывать оптические длины волн в частоты (THz), выполнять цифровую фильтрацию шумов, рассчитывать огибающую аналитического сигнала с помощью преобразования Гильберта, строить БПФ-спектры (FFT), а также определять разность фаз выбранных гармоник по пространственным/временным каналам для нахождения **разности оптического хода (Optical Path Difference, OPD)**.
-
----
-
-## ✨ Ключевые возможности
-
-### 📥 1. Импорт и организация данных
-* **Поддержка популярных форматов:** загрузка матриц данных из файлов `.txt` (включая разделители пробелами и табуляцией), `.csv` и `.xlsx` (Excel).
-* **Drag-and-Drop:** загрузка файлов простым перетаскиванием прямо в окно программы с анимированным оверлеем.
-* **Автоматическое преобразование дБ $\to$ линейная шкала:** перевод логарифмических уровней мощности в амплитуду:
-  $$A = 10^{\frac{\text{dB}}{20}}$$
-* **Многоканальность:** быстрое переключение между каналами измерений и просмотр исходных массивов в виде таблицы (`Raw Data`).
-
-### ⚙️ 2. Цифровая фильтрация и предобработка
-* **Скользящее среднее (Moving Average)** — устранение высокочастотного шума с настраиваемым размером окна.
-* **Гауссова фильтрация (Gaussian Filter 1D)** — сглаживание с сохранением контуров интерференционных полос.
-* **Фильтр Савицкого — Голея (Savitzky-Golay)** — полиномиальное сглаживание без искажения амплитуды пиков.
-* **Zero-Padding:** настраиваемое дополнение массива нулями для увеличения частотной дискретизации и плавности спектра.
-* **Центрирование:** автоматическое удаление постоянной составляющей (DC-компоненты).
-
-### 📊 3. Интерферометрический и спектральный анализ
-* **Пересчет длины волны в частоту:** встроенный диапазон оптической калибровки $\lambda \in [1410, 1490]\text{ нм}$ с автоматическим преобразованием по формуле $\nu = \frac{c}{\lambda}$ и шкалой в терагерцах (THz).
-* **Преобразование Гильберта:** расчет аналитического сигнала, выделение мгновенной амплитуды (огибающей) и мгновенной фазы:
-  $$s_a(t) = s(t) + i\mathcal{H}\{s(t)\}$$
-* **Быстрое преобразование Фурье (FFT):** расчет амплитудного спектра с автоматической отсечкой нулевой гармоники.
-* **Детекция экстремумов (Peaks):** автоматический поиск пиков интерференционной картины по смене знака производной с маркировкой на графике.
-
-### 📐 4. Фазовый анализ разности оптического хода (OPD)
-* **Интерактивный маркер частот:** удобный визир с привязкой к бинам частот и точным отображением частоты и амплитуды.
-* **Поканальное распределение фазы («Plot Phase»):** фиксация выбранной гармоники $f_0$ и расчет ее фазы $\Delta\phi(n)$ по всем каналам с устранением скачков $\pm\pi$ (`unwrap`). Это дает прямую картину разности оптического хода (OPD) и фазового фронта между лучами / каналами интерферометра.
-
-### 💾 5. Публикационный экспорт графиков
-* Экспорт в **растровый формат высокой четкости (PNG, до 1920px)**.
-* Экспорт в **векторный формат (SVG)** для вставки в научные статьи (LaTeX, Word), презентации и дипломные работы без потери качества.
-* Экспорт как отдельных графиков, так и всех активных графиков одним действием («Export All Plots»).
-
----
-
-## 🚀 Быстрый старт
-
-### Вариант 1. Запуск автономного EXE (Windows, без установки Python)
-
-1. Перейдите в раздел [**Releases**](https://github.com/Amizx2/Programme-for-the-intorferometer-OPD/releases).
-2. Скачайте файл **`InterferometerAnalyzer.exe`**.
-3. Запустите двойным кликом — установка дополнительных библиотек или Python не требуется.
-
----
-
-### Вариант 2. Запуск из исходного кода Python
-
-#### 1. Клонирование репозитория
+#### 2. Set Up a Virtual Environment (Recommended)
 ```bash
-git clone https://github.com/Amizx2/Programme-for-the-intorferometer-OPD.git
-cd Programme-for-the-intorferometer-OPD
+# Windows
+python -m venv venv
+venv\Scripts\activate
 
+# Linux / macOS
+python3 -m venv venv
+source venv/bin/activate
+```
 
+#### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+*(Or manually: `pip install PyQt5 pyqtgraph numpy scipy pandas openpyxl`)*
 
+#### 4. Launch the Application
+```bash
+python interfe.py
+```
+
+---
+
+## 📦 Requirements
+
+| Package | Purpose |
+|---|---|
+| **Python** $\ge$ 3.8 | Core runtime environment |
+| **PyQt5** | Modern graphical user interface (GUI) |
+| **pyqtgraph** | High-performance hardware-accelerated 2D plotting |
+| **NumPy** | Vectorized mathematical operations |
+| **SciPy** | Signal processing (FFT, Hilbert transform, digital filters) |
+| **Pandas** | Tabular data loading and processing (.csv, .xlsx, .txt) |
+| **OpenPyXL** | Engine for reading Microsoft Excel spreadsheets |
+
+---
+
+## 📖 User Workflow
+
+1. **Load Data:**
+   * Click **`Load Data File`** or drag and drop a data file (`.txt`, `.csv`, `.xlsx`) into the window.
+   * Select the channel to analyze from the **`Select Channel`** dropdown.
+2. **Apply Filtering:**
+   * In the **`Signal Processing`** panel, choose a filter (*Moving Average*, *Gaussian*, or *Savitzky-Golay*).
+   * Specify the window parameter and click **`Apply Filter`**.
+3. **Analyze Spectrum:**
+   * Configure zero-padding in **`Number of Zeros`** and click **`Update Spectrum`**.
+   * Click on the header label **`Spectrum of mained Signal`**, enter your sampling frequency, and inspect the dedicated spectrum tab.
+4. **Evaluate Phase & OPD:**
+   * In the spectrum tab, toggle **`Marker: On`** and position the vertical line over your harmonic of interest.
+   * Click **`Plot Phase`** to generate the phase-versus-channel curve representing the Optical Path Difference.
+5. **Export Figures:**
+   * Click **`Export`** beneath any graph, choose your target folder, file name, and format (PNG or SVG).
+
+---
+
+## 🛠️ Building the Standalone Executable
+
+To compile the application into a standalone `.exe` using [PyInstaller](https://pyinstaller.org/):
+
+```bash
+pip install pyinstaller
+pyinstaller --noconsole --onefile --name "InterferometerAnalyzer" interfe.py
+```
+The compiled binary will be generated inside the `dist/` directory.
+
+---
+
+## 👤 Author
+
+* **Amizx2** — [GitHub Profile](https://github.com/Amizx2)
+* Repository: [Programme-for-the-intorferometer-OPD](https://github.com/Amizx2/Programme-for-the-intorferometer-OPD)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
